@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  frontend:
+    container_name: dt-front-prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prod
+    restart: unless-stopped
+    ports:
+      - "80"

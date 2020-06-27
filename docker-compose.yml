@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  frontend:
+    container_name: dt-front
+    build:
+      context: .
+      dockerfile: ./Dockerfile.local
+    restart: unless-stopped
+    volumes:
+      - ./client/:/app/client
+      - /app/client/node_modules
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true

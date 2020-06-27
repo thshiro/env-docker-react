@@ -1,0 +1,20 @@
+FROM node:latest
+
+# setting workdir
+WORKDIR /app/client
+
+# add '/app/client/node_modules/.bin' to the $PATH
+ENV PATH /app/client/node_modules/.bin:$PATH
+
+# copying package.json and package-lock.json 
+COPY client/package*.json /app/client/
+
+# installing dependencies and caching
+RUN npm ci -qy
+
+# copy everything
+COPY client /app/client/
+
+EXPOSE 3000
+
+CMD ["npm", "start"] 
